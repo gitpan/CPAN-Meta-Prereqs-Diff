@@ -1,0 +1,113 @@
+NAME
+    CPAN::Meta::Prereqs::Diff - Compare dependencies between releases using
+    CPAN::Meta.
+
+VERSION
+    version 0.001000
+
+SYNOPSIS
+      use CPAN::Meta::Prereqs::Diff;
+
+
+      my $diff = CPAN::Meta::Diff->new(
+        new_prereqs => CPAN::Meta->load_file('Dist-Foo-1.01/META.json')->effective_prereqs
+        old_prereqs => CPAN::Meta->load_file('Dist-Foo-1.00/META.json')->effective_prereqs
+      );
+      my @changes = $diff->diff(
+        phases => [qw( runtime build configure test )],
+        types  => [qw( requires suggests configures conflicts )],
+      );
+
+      ## Here, the examples with printf are not needed because ->describe exists
+      ## But they're there any way for example reasons.
+
+      for my $dep (@prereqs) {
+        if ( $dep->is_addition ) {
+          # runtime.requires: + Foo::Bar 0.4
+          printf "%s.%s : + %s %s",
+            $dep->phase, $dep->type, $dep->module, $dep->requirement;
+          next;
+        }
+        if ( $dep->is_removal ) {
+          # runtime.requires: - Foo::Bar 0.4
+          printf "%s.%s : - %s %s",
+            $dep->phase, $dep->type, $dep->module, $dep->requirement;
+          next;
+        }
+        if ( $dep->is_change ) {
+          if ( $dep->is_upgrade ) {
+            # runtime.requires: ↑ Foo::Bar 0.4 → 0.5
+            printf "%s.%s : \x{2191} %s \x{2192} %s",
+              $dep->phase, $dep->type, $dep->module, $dep->old_requirement, $dep->new_requirement;
+            next;
+          }
+          if ( $dep->is_downgrade ) {
+            # runtime.requires: ↓ Foo::Bar 0.5 → 0.4
+            printf "%s.%s : \x{2193} %s %s \x{2192} %s",
+              $dep->phase, $dep->type, $dep->module, $dep->old_requirement, $dep->new_requirement;
+            next;
+          }
+          # changes that can't be easily determined upgrades or downgrades
+          # runtime.requires: ~ Foo::Bar >=0.5, <=0.7 → >=0.4, <=0.8
+          printf "%s.%s : ~ %s %s \x{2192} %s",
+            $dep->phase, $dep->type, $dep->module, $dep->old_requirement, $dep->new_requirement;
+          next;
+        }
+      }
+
+METHODS
+  "diff"
+      my @out = $diff->diff( %options );
+
+    Returns a list of "Objects" that "do"
+    "CPAN::Meta::Prereqs::Diff::Role::Change", describing the changes
+    between "old_prereqs" and "new_prereqs"
+
+    *   "Addition"
+
+    *   "Change"
+
+    *   "Upgrade"
+
+    *   "Downgrade"
+
+    *   "Removal"
+
+   "diff.%options"
+   "diff.options.phases"
+      my @out = $diff->diff(
+        phases => [ ... ]
+      );
+
+      ArrayRef
+      default         = [qw( configure build runtime test )]
+      valid options   = [qw( configure build runtime test develop )]
+
+   "diff.options.types"
+      my @out = $diff->diff(
+        types => [ ... ]
+      );
+
+      ArrayRef
+      default         = [qw( requires recommends suggests conflicts )]
+      valid options   = [qw( requires recommends suggests conflicts )]
+
+ATTRIBUTES
+  "new_prereqs"
+      required
+      HashRef | CPAN::Meta::Prereqs | CPAN::Meta
+
+  "old_prereqs"
+      required
+      HashRef | CPAN::Meta::Prereqs | CPAN::Meta
+
+AUTHOR
+    Kent Fredric <kentfredric@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2014 by Kent Fredric
+    <kentfredric@gmail.com>.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
