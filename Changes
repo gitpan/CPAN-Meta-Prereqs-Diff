@@ -1,5 +1,18 @@
 Release history for CPAN-Meta-Prereqs-Diff
 
+0.001002 2014-08-15T21:14:04Z
+ [00 Trivial]
+ - CPANDAY!
+ - no code changes.
+ - adjust whitespace.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.001001, see misc/*.deps* for details
+ - develop: +1 (suggests: ↑1)
+
+ [Misc]
+ - Improve source side POD to reduce build side whitespace.
+
 0.001001 2014-08-09T00:44:44Z
  [00 Bugfix]
  - Use newer version of CPAN::Meta::Requirements to avoid test failures.
@@ -12,7 +25,7 @@ Release history for CPAN-Meta-Prereqs-Diff
  - test: +1 -2 (recommends: ↑1 -1)
 
  [Misc]
- - Update Test::ReportVersions
+ - Update Test::ReportPrereqs
  - Move repository to kentnl org
 
 0.001000 2014-06-19T09:16:18Z

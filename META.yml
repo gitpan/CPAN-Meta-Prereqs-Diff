@@ -19,25 +19,25 @@ name: CPAN-Meta-Prereqs-Diff
 provides:
   CPAN::Meta::Prereqs::Diff:
     file: lib/CPAN/Meta/Prereqs/Diff.pm
-    version: '0.001001'
+    version: '0.001002'
   CPAN::Meta::Prereqs::Diff::Addition:
     file: lib/CPAN/Meta/Prereqs/Diff/Addition.pm
-    version: '0.001001'
+    version: '0.001002'
   CPAN::Meta::Prereqs::Diff::Change:
     file: lib/CPAN/Meta/Prereqs/Diff/Change.pm
-    version: '0.001001'
+    version: '0.001002'
   CPAN::Meta::Prereqs::Diff::Downgrade:
     file: lib/CPAN/Meta/Prereqs/Diff/Downgrade.pm
-    version: '0.001001'
+    version: '0.001002'
   CPAN::Meta::Prereqs::Diff::Removal:
     file: lib/CPAN/Meta/Prereqs/Diff/Removal.pm
-    version: '0.001001'
+    version: '0.001002'
   CPAN::Meta::Prereqs::Diff::Role::Change:
     file: lib/CPAN/Meta/Prereqs/Diff/Role/Change.pm
-    version: '0.001001'
+    version: '0.001002'
   CPAN::Meta::Prereqs::Diff::Upgrade:
     file: lib/CPAN/Meta/Prereqs/Diff/Upgrade.pm
-    version: '0.001001'
+    version: '0.001002'
 requires:
   CPAN::Meta::Prereqs: '2.120620'
   CPAN::Meta::Requirements: '2.120620'
@@ -55,7 +55,7 @@ resources:
   bugtracker: https://github.com/kentnl/CPAN-Meta-Prereqs-Diff/issues
   homepage: https://github.com/kentnl/CPAN-Meta-Prereqs-Diff
   repository: https://github.com/kentnl/CPAN-Meta-Prereqs-Diff.git
-version: '0.001001'
+version: '0.001002'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.142060'
@@ -72,6 +72,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Git::Check: '2.023'
     Dist::Zilla::Plugin::Git::Commit: '2.023'
     Dist::Zilla::Plugin::Git::CommitBuild: '2.023'
+    Dist::Zilla::Plugin::Git::Contributors: '0.006'
     Dist::Zilla::Plugin::Git::GatherDir: '2.023'
     Dist::Zilla::Plugin::Git::NextRelease: '0.002011'
     Dist::Zilla::Plugin::Git::Tag: '2.023'
@@ -92,20 +93,20 @@ x_BuiltWith:
     Dist::Zilla::Plugin::PodWeaver: '4.005'
     Dist::Zilla::Plugin::Prereqs: '5.020'
     Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled: '0.002000'
-    Dist::Zilla::Plugin::ReadmeAnyFromPod: '0.142180'
+    Dist::Zilla::Plugin::ReadmeAnyFromPod: '0.142250'
     Dist::Zilla::Plugin::ReadmeFromPod: '0.21'
-    Dist::Zilla::Plugin::RewriteVersion::Sanitized: '0.001001'
+    Dist::Zilla::Plugin::RewriteVersion::Sanitized: '0.001002'
     Dist::Zilla::Plugin::RunExtraTests: '0.022'
     Dist::Zilla::Plugin::Test::CPAN::Changes: '0.008'
     Dist::Zilla::Plugin::Test::Compile::PerFile: '0.002001'
     Dist::Zilla::Plugin::Test::Kwalitee: '2.07'
     Dist::Zilla::Plugin::Test::MinimumVersion: '2.000005'
     Dist::Zilla::Plugin::Test::Perl::Critic: '2.112410'
-    Dist::Zilla::Plugin::Test::ReportPrereqs: '0.018'
+    Dist::Zilla::Plugin::Test::ReportPrereqs: '0.019'
     Dist::Zilla::Plugin::TestRelease: '5.020'
     Dist::Zilla::Plugin::Twitter: '0.025'
     Dist::Zilla::Plugin::UploadToCPAN: '5.020'
-    Dist::Zilla::PluginBundle::Author::KENTNL: '2.016007'
+    Dist::Zilla::PluginBundle::Author::KENTNL: '2.017002'
     ExtUtils::MakeMaker: '6.98'
     File::Spec: '3.48'
     List::MoreUtils: '0.33'
@@ -181,6 +182,15 @@ x_Dist_Zilla:
       name: '@Author::KENTNL/MetaData::BuiltWith'
       version: '1.001000'
     -
+      class: Dist::Zilla::Plugin::Git::Contributors
+      config:
+        Dist::Zilla::Plugin::Git::Contributors:
+          include_authors: '0'
+          include_releaser: '0'
+          order_by: name
+      name: '@Author::KENTNL/Git::Contributors'
+      version: '0.006'
+    -
       class: Dist::Zilla::Plugin::Git::GatherDir
       config:
         Dist::Zilla::Plugin::Git::GatherDir:
@@ -224,7 +234,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Test::ReportPrereqs
       name: '@Author::KENTNL/Test::ReportPrereqs'
-      version: '0.018'
+      version: '0.019'
     -
       class: Dist::Zilla::Plugin::Test::Kwalitee
       name: '@Author::KENTNL/Test::Kwalitee'
@@ -275,7 +285,7 @@ x_Dist_Zilla:
           mantissa: '6'
           normal_form: numify
       name: '@Author::KENTNL/RewriteVersion::Sanitized'
-      version: '0.001001'
+      version: '0.001002'
     -
       class: Dist::Zilla::Plugin::PodWeaver
       config:
@@ -392,7 +402,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ReadmeAnyFromPod
       name: '@Author::KENTNL/ReadmeAnyFromPod'
-      version: '0.142180'
+      version: '0.142250'
     -
       class: Dist::Zilla::Plugin::Test::CPAN::Changes
       name: '@Author::KENTNL/Test::CPAN::Changes'
@@ -450,7 +460,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: '0'
-          tag: 0.001001-source
+          tag: 0.001002-source
           tag_format: '%v-source'
           tag_message: v%v
           time_zone: local
@@ -504,7 +514,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: releases
           signed: '0'
-          tag: '0.001001'
+          tag: '0.001002'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local

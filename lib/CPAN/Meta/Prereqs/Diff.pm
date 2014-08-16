@@ -5,64 +5,11 @@ use utf8;
 
 package CPAN::Meta::Prereqs::Diff;
 
-our $VERSION = '0.001001';
+our $VERSION = '0.001002';
 
 # ABSTRACT: Compare dependencies between releases using CPAN::Meta.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 use Moo 1.000008 qw( has );
 use List::MoreUtils qw( uniq );
@@ -288,7 +235,7 @@ CPAN::Meta::Prereqs::Diff - Compare dependencies between releases using CPAN::Me
 
 =head1 VERSION
 
-version 0.001001
+version 0.001002
 
 =head1 SYNOPSIS
 

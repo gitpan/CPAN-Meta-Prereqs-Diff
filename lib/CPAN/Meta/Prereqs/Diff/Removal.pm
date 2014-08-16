@@ -5,7 +5,7 @@ use utf8;
 
 package CPAN::Meta::Prereqs::Diff::Removal;
 
-our $VERSION = '0.001001';
+our $VERSION = '0.001002';
 
 # ABSTRACT: An unneeded dependency
 
@@ -64,7 +64,7 @@ CPAN::Meta::Prereqs::Diff::Removal - An unneeded dependency
 
 =head1 VERSION
 
-version 0.001001
+version 0.001002
 
 =head1 METHODS
 

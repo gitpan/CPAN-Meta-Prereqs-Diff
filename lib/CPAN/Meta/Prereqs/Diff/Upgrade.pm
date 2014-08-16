@@ -5,7 +5,7 @@ use utf8;
 
 package CPAN::Meta::Prereqs::Diff::Upgrade;
 
-our $VERSION = '0.001001';
+our $VERSION = '0.001002';
 
 # ABSTRACT: A dependency which changes its requirements to a newer version
 
@@ -53,7 +53,7 @@ CPAN::Meta::Prereqs::Diff::Upgrade - A dependency which changes its requirements
 
 =head1 VERSION
 
-version 0.001001
+version 0.001002
 
 =head1 METHODS
 
